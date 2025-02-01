@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poem | Yaw's Poetry</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Read the Poem</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="poems.html">Poems</a></li>
+                <li><a href="submit-poem.html">Submit a Poem</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article class="poem">
+            <h2 id="poem-title">Poem Title</h2>
+            <p id="poem-content">Loading...</p>
+        </article>
+        <a href="poems.html" class="btn">Back to Poems</a>
+    </main>
+
+    <footer>
+        <p>© 2025 Yaw's Poetry | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const params = new URLSearchParams(window.location.search);
+            const poemId = params.get("id");
+            let poems = JSON.parse(localStorage.getItem("poems")) || [];
+
+            if (poems[poemId]) {
+                document.getElementById("poem-title").innerText = poems[poemId].title;
+                document.getElementById("poem-content").innerText = poems[poemId].content;
+            } else {
+                document.getElementById("poem-title").innerText = "Poem Not Found";
+                document.getElementById("poem-content").innerText = "Sorry, this poem does not exist.";
+            }
+        });
+    </script>
+</body>
+</html>
